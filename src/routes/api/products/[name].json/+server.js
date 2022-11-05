@@ -16,13 +16,14 @@ export async function GET(params) {
         const title = dom(product).find(`h2.a-size-mini`).text();
         const price = dom(product).find(`span.a-price-whole`).text();
         const image = dom(product).find(`img.s-image`).attr('src');
-
+        const link = dom(product).find(`a.a-link-normal.a-text-normal`).attr('href');
         
 
         products.push({
             title,
             price,
-            image
+            image,
+            link
            
         })
     }
