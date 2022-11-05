@@ -1,3 +1,12 @@
-<h1 class="text bg-red-500">Welcome to SvelteKit</h1>
+<script>
+  let name = "";
+</script>
 
-<button class="btn">click me</button>
+<div>
+  <h2>search your product here.</h2>
+  <input bind:value={name} type="text" />
+</div>
+
+<div>
+  <a href="/product/{name}"> <button class="btn"> Search. </button></a>
+</div>
