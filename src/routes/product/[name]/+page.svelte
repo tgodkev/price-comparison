@@ -1,7 +1,7 @@
 <script>
   export let data;
 
-  console.log(data.body.walmart);
+  console.log(data.body);
   // console.log(data.body.products);
 </script>
 

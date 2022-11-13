@@ -36,26 +36,21 @@ export async function GET(params) {
 const fetchWalmart = async ( )=> {
   // https://www.walmart.com/search/?cat_id=0&query=beans
   const walmart = await fetch(`https://www.walmart.com/search/?cat_id=0&query=${params.params.name}`);
-  const wdom = cheerio.load(await walmart.text());
+  const dom = cheerio.load(await walmart.text());
   const walmartProducts = [];
-  const walmartList = wdom(`div[data-index]`)
-
+  const walmartList = dom()
   for (let i = 0; i < 10; i++) {
     const product = walmartList[i];
-    const title = wdom(product).find(`span.w_CC`).text();
-   
-    const image = wdom(product).find(`img`).attr('src');
-    const link = wdom(product).find(`a.a-link-normal.a-text-normal`).attr('href');
-
-   
-
+    const title = dom(product).find(`span[data-automation-id="product-title"]`).text();
+    const price = dom(product).find(`div[data-automation-id="product-price"]`).text();
+    const image = dom(product).find(`img[data-automation-id="image"]`).attr('src');
+    const link = dom(product).find(`a[data-automation-id="product-title"]`).attr('href');
 
     walmartProducts.push({
       title,
+      price,
       image,
-      link,
-     
-
+      link
     })
   }
 
